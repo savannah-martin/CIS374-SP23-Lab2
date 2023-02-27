@@ -139,9 +139,9 @@ namespace Lab2
         {
             // linear search
 
-            foreach (var item in array)
+            for (int i = 0; i < Count; i++)
             {
-                if (item.CompareTo(value) == 0)
+                if (array[i].CompareTo(value)==0)
                 {
                     return true;
                 }
@@ -174,41 +174,33 @@ namespace Lab2
         // Time Complexity: O( log(n) )
         private void TrickleDown(int index)
         {
-            if (index == Count - 1)
+            if (index == Count)
             {
                 return;
             }
 
             int left = LeftChild(index);
             int right = RightChild(index);
+            T curr = array[index];
+            T leftkid = array[left];
+            T rightkid = array[right];
 
-            if (left == Count-1 && array[index].CompareTo(array[left]) < 0)
+            if (curr.CompareTo(leftkid)<0 || curr.CompareTo(rightkid) < 0)
             {
-                Swap(index, left);
-                return;
+                if (rightkid.CompareTo(leftkid) > 0 && right < Count)
+                {
+                    Swap(index, right);
+                    TrickleDown(right);
+                    
+                }
+                if (leftkid.CompareTo(rightkid) > 0 && left < Count)
+                {
+                    Swap(index, left);
+                    TrickleDown(left);
+                    
+                    return;
+                }
             }
-            if (right == Count-1 && array[index].CompareTo(array[right])<0)
-            {
-                Swap(index, right);
-                return;
-            }
-
-            if (left >= Count-1 || right >= Count-1)
-            {
-                return;
-            }
-            if (array[left].CompareTo(array[right]) > 0 && array[index].CompareTo(array[left]) < 0)
-            {
-                Swap(index, left);
-                TrickleDown(left);
-            }
-            else if (array[index].CompareTo(array[right]) < 0)
-            {
-                Swap(index, right);
-                TrickleDown(right);
-                return;
-            }
-
         }
 
         // TODO
@@ -217,9 +209,6 @@ namespace Lab2
         /// </summary>
         private static int Parent(int position)
         {
-            if (position == 0){
-                throw new Exception();
-            }
             return (position - 1) / 2;
         }
         // TODO
@@ -228,11 +217,7 @@ namespace Lab2
         /// </summary>
         private static int LeftChild(int position)
         {
-            if ((2 * position) + 1 > 0)
-            {
-                return (2 * position) + 1;
-            }
-            throw new Exception();
+            return (2 * position) + 1;
         }
 
         // TODO

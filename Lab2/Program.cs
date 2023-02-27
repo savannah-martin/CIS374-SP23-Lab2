@@ -6,17 +6,19 @@ namespace Lab2
     {
         static void Main(string[] args)
         {
-            MaxHeap<int> heap1 = new MaxHeap<int>();
+            MinHeap<string> heap1 = new MinHeap<string>();
 
-            heap1.Add(4);
-            heap1.Add(3);
-            heap1.Add(2);
-            heap1.Add(1);
-            heap1.Add(0);
-            Console.WriteLine(heap1.Count);
+            heap1.Add("kaden");
+            heap1.Add("caleb");
+            heap1.Add("kenan");
+            heap1.Add("dallas");
+            heap1.Add("cameron");
 
-            Console.WriteLine(heap1.ExtractMax());
-           
+            Console.WriteLine(heap1.ExtractMin());
+            Console.WriteLine(heap1.ExtractMin());
+            Console.WriteLine(heap1.ExtractMin());
+            Console.WriteLine(heap1.ExtractMin());
+            Console.WriteLine(heap1.ExtractMin());
         }
     }
 }
