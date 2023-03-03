@@ -164,7 +164,7 @@ namespace Lab2
 
             if (!Contains(oldValue))
             {
-                return;
+                throw new Exception("Not in Heap");
             }
 
             //getvalue
@@ -180,10 +180,12 @@ namespace Lab2
 
             if (array[pos].CompareTo(array[Parent(pos)]) < 0)
             {
+                TrickleUp(pos);
+            }
+            else
+            {
                 TrickleDown(pos);
             }
-
-
         }
 
         // TODO
@@ -203,7 +205,7 @@ namespace Lab2
             int pos = 0;
             for (int i = 0; i < Count; i++)
             {
-                if (array[i].CompareTo(value) > 0)
+                if (array[i].CompareTo(value) == 0)
                 {
                     pos = i;
                 }

@@ -151,6 +151,75 @@ namespace Lab2
 
         }
 
+
+        // TODO
+        /// <summary>
+        /// Updates the first element with the given value from the heap.
+        /// Time complexity: O( ? )
+        /// </summary>
+        public void Update(T oldValue, T newValue)
+        {
+            if (IsEmpty)
+            {
+                throw new Exception("Empty Heap");
+            }
+
+            if (!Contains(oldValue))
+            {
+                return;
+            }
+
+            //getvalue
+            int pos = 0;
+            for (int i = 0; i < Count; i++)
+            {
+                if (array[i].CompareTo(oldValue) == 0)
+                {
+                    array[i] = newValue;
+                    pos = i;
+                }
+            }
+
+            if (array[pos].CompareTo(array[Parent(pos)]) > 0)
+            {
+                TrickleUp(pos);
+            }
+            else
+            {
+                TrickleDown(pos);
+            }
+        }
+
+        // TODO
+        /// <summary>
+        /// Removes the first element with the given value from the heap.
+        /// Time complexity: O( ? )
+        /// </summary>
+        public void Remove(T value)
+        {
+
+            if (IsEmpty)
+            {
+                throw new Exception("Empty Heap");
+            }
+
+            //getvalue
+            int pos = 0;
+            for (int i = 0; i < Count; i++)
+            {
+                if (array[i].CompareTo(value) == 0)
+                {
+                    pos = i;
+                }
+            }
+
+            // swap root (first) and last element
+            Swap(pos, Count - 1);
+
+            Count--;
+            TrickleDown(0);
+        }
+
         // TODO
         // Time Complexity: O( log(n) )
         private void TrickleUp(int index)
