@@ -166,7 +166,7 @@ namespace Lab2
 
             if (!Contains(oldValue))
             {
-                return;
+                throw new Exception("Not in Heap");
             }
 
             //getvalue
@@ -184,10 +184,10 @@ namespace Lab2
             {
                 TrickleUp(pos);
             }
-            else
-            {
-                TrickleDown(pos);
-            }
+            //else if (pos < ((Count / 2))
+            //{
+            //    TrickleDown(pos);
+            //}
         }
 
         // TODO
